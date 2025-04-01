@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "thermal-anomaly-segmenter"
+authors = [
+    { name = "Elena Vollmer", email = "elena.vollmer@kit.edu" },
+    { name = "Julian Ruck" },
+]
+description = "UAS-based thermal urban anomaly semantic segmentation for leak detection in district heating systems"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "BSD-3-Clause" }
+classifiers = [
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: AI/ML/DL Researchers",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+]
+dynamic = ["version", "dependencies"]
+
+[project.urls]
+"Homepage" = "https://github.com/ai4os-hub/thermal-anomaly-segmenter"
+"Bug Tracker" = "https://github.com/ai4os-hub/thermal-anomaly-segmenter/issues"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+env = [
+    "DATA_PATH=tests/data",
+    "MODELS_PATH=tests/models",
+]
+# Allow test files to share names
+# https://docs.pytest.org/en/7.1.x/explanation/goodpractices.html
+addopts = "--import-mode=importlib"
+
+[tool.setuptools]
+packages = [
+    "thermal_anomaly_segmenter",
+    "thermal_anomaly_segmenter.api",
+]
+
+[tool.setuptools.package-dir]
+"thermal_anomaly_segmenter.api" = "api"
+
+[tool.setuptools.dynamic]
+dependencies = { file = ["requirements.txt"] }
+version = { file = "VERSION" }
+
+[project.entry-points."deepaas.v2.model"]
+thermal_anomaly_segmenter = "thermal_anomaly_segmenter.api"

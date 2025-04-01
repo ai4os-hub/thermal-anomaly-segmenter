@@ -1,0 +1,37 @@
+{
+    "title": "thermal-anomaly-segmenter",
+    "summary": "UAS-based thermal urban anomaly semantic segmentation for leak detection in district heating systems",
+    "description": [
+        "thermal-anomaly-segmenter is an application using the DEEPaaS API.\n",
+        "UAS-based thermal urban anomaly semantic segmentation for leak detection in district heating systems"
+    ],
+    "keywords": [
+        "docker",
+        "api-v2"
+    ],
+    "license": "BSD-3-Clause",
+    "date_creation": "2025-02-19",
+    "sources": {
+        "dockerfile_repo": "https://github.com/ai4os-hub/thermal-anomaly-segmenter",
+        "docker_registry_repo": "emvollmer/thermal-anomaly-segmenter",
+        "code": "https://github.com/ai4os-hub/thermal-anomaly-segmenter",
+        "ai4_template": "ai4-template-adv/2.1.0"
+    },
+    "continuous_integration": {
+        "build_status_badge": "https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/thermal-anomaly-segmenter/main",
+        "build_status_url": "https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/thermal-anomaly-segmenter/job/main/"
+    },
+    "tosca": [
+        {
+            "title": "Mesos (CPU)",
+            "url": "https://raw.githubusercontent.com/indigo-dc/tosca-templates/master/deep-oc/deep-oc-marathon-webdav.yml",
+            "inputs": [
+                "rclone_conf",
+                "rclone_url",
+                "rclone_vendor",
+                "rclone_user",
+                "rclone_pass"
+            ]
+        }
+    ]
+}

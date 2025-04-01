@@ -1,0 +1,84 @@
+metadata_version: 2.0.0
+title: thermal-anomaly-segmenter
+summary: "UAS-based thermal urban anomaly semantic segmentation for leak detection in district heating systems"
+description: |-
+  The Thermal Anomaly Segmenter (TASeg) application adapts semantic segmentation models
+  to find thermal anomalies in UAS-based thermal images for leak detection in district heating systems (DHSs).
+  Available models are transformers, specifically the Segformer from the [HuggingFace transformers
+  toolbox](https://github.com/huggingface/transformers), and CNNs, specifically DeepLabV3+, UNet and PSPNet
+  from the [segmentation_models.pytorch toolbox](https://github.com/qubvel-org/segmentation_models.pytorch).
+
+  **Training the deep learning model(s)**
+  
+  The models are trained based on user arguments and predefined configuration files.
+  Regardless of model variant, pretrained weights from RGB-based semantic segmentation
+  are used. Training is then performed as a three-phase procedure:
+
+  1. Pretraining on the "generated" dataset with the encoder frozen
+  2. Pretraining on the "generated" dataset with the encoder unfrozen
+  3. Fine-tuning on the "manual" dataset with the encode unfrozen
+
+  For more information on the datasets, see below. 
+  Training via this application automatically creates a timestamp folder within
+  the `thermal-anomaly-segmenter/models/` folder.
+
+  **Data**
+
+  The dataset that forms the basis of model training is the [Thermal Urban Anomaly
+  Segmentation (TASeg) - link not yet active!](https://doi.org/10.5281/zenodo.14287864).
+  It stems from a case study of the cities of Munich and Karlsruhe in Germany and
+  encompasses UAS-based thermal imagery. Each image has three channely, namely
+  `(T_m, T_m, T_um)` where T_m = masked with DHS and T_um = unmasked image.
+
+  There are two datasets:
+  * The "generated_set" contains segmented annotation masks generated via
+    adaptive triangle-histogram-thresholding.
+  * The "manual_set" consists of segmented annotation masks created by hand,
+    by means of a custom labeling tool.
+
+  These two datasets are split as follows for training:
+  * Generated: 3,142 images -> Train: 2,142, Validation: 404, Test: 625
+  * Manual: 269 images -> Train: 172, Validation: 52, Test: 45
+
+  **Inference**
+
+  The docker image contains a pretrained SegFormer model for inference 
+  (`thermal-anomaly-segmenter/models`) that expects 3-channel numpy inputs `
+  (T_m, T_m, T_um)` formatted in the same way as the training data.
+  The inference results are automatically saved to the utilised model's timestamp folder
+  into a subfolder `predictions`.
+
+# doi: http://add-some-DOI-url.com
+dates:
+  created: 2025-02-19
+  updated: 2025-02-19
+links:
+  ai4_template: ai4-template-adv/2.1.0
+  source_code: https://github.com/ai4os-hub/thermal-anomaly-segmenter
+  docker_image: ai4oshub/thermal-anomaly-segmenter
+  # documentation: http://add-some-documentation.com
+  # dataset: http://add-some-url-pointing-to-your-dataset.com
+  # weights: http://add-some-weights-url.com
+  # citation: http://add-some-DOI-url.com
+  # base_model: http://add-some-link-to-another-model.com
+tags:        # add user-defined tags that you consider relevant
+  - deep learning
+  - semantic segmentation
+  - transformers
+  - SegFormer
+  - DeepLabV3+
+  - thermal imagery
+  - remote sensing
+tasks:
+  - Computer Vision
+  - Anomaly Detection
+  - Transfer Learning
+  - Other
+categories:
+  - AI4 trainable
+  - AI4 pre trained
+  - AI4 inference
+libraries:
+  - PyTorch
+data-type:
+  - Image

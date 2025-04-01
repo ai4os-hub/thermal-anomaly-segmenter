@@ -1,0 +1,7 @@
+# Docker image for CI testing of the DEEPaaS API
+# Note there is probably no gpu in the CI server
+ARG tag=2.0.1-cuda11.7-cudnn8-runtime
+FROM pytorch/pytorch:${tag}
+RUN pip3 install --no-cache-dir --upgrade pip setuptools wheel
+RUN pip3 install --no-cache-dir tox
+CMD ["sleep", "infinity"]

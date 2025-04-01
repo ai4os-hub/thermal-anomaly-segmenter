@@ -1,0 +1,51 @@
+{
+  "model": "smp",
+  "config_name": "dv3+PolyTversky",
+  "smp_encoder": "resnet101",
+  "smp_arch": "DeepLabV3Plus",
+  "output_path": "/path/to/outputs",
+  "batch_size": 16,
+  "worker_count": 12,
+  "lr_scheduler": "poly",
+  "loss_fn": "tversky_0.3_0.7",
+  "gpus": 1,
+  "datasets": {
+    "main_dataset": {
+      "path": "$TMP/dhs_detection/generated_set",
+      "augment_train": true,
+      "augmentation_range": [-2, 2]
+    },
+    "manual_dataset": {
+      "normalize_on_other_dataset": "main_dataset",
+      "path": "$TMP/dhs_detection/manual_set",
+      "augmentation_range": [-2, 2],
+      "augment_train": true,
+      "repeat_train_images": 2
+    }
+  },
+  "main_dataset": "main_dataset",
+  "train_phases": {
+    "pre_train_frozen":
+    {
+      "dataset": "main_dataset",
+      "epochs": 15,
+      "lr": 0.003,
+      "freeze_encoder": true
+    },
+    "pre_train_unfrozen":
+    {
+      "dataset": "main_dataset",
+      "epochs": 35,
+      "lr": 0.002,
+      "freeze_encoder": false
+    },
+    "fine_tune":
+    {
+      "dataset": "manual_dataset",
+      "epochs": 60,
+      "lr": 0.001,
+      "freeze_encoder": false
+    }
+  },
+  "train_phase_order": ["pre_train_frozen", "pre_train_unfrozen", "fine_tune"]
+}
