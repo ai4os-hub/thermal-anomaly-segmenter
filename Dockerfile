@@ -31,6 +31,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     gcc \
     git \
     libgl1 \
+    libglib2.0-0 \
     wget \
     curl \
     && rm -rf /var/lib/apt/lists/*
