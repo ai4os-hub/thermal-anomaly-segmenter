@@ -29,5 +29,6 @@ environment:
   GIT_COMMITTER_NAME: "Elena Vollmer"
   GIT_COMMITTER_EMAIL: "elena.vollmer@kit.edu"
   LANG: C.UTF-8
+  JPL_DOCKERFORCEBUILD: "True"
 
 timeout: 900
