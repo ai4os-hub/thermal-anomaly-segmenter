@@ -30,4 +30,4 @@ environment:
   GIT_COMMITTER_EMAIL: "elena.vollmer@kit.edu"
   LANG: C.UTF-8
 
-timeout: 600
+timeout: 900
