@@ -10,5 +10,5 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 RUN pip3 install --no-cache-dir --upgrade pip setuptools wheel
-RUN pip3 install --no-cache-dir tox
+RUN pip3 install --no-cache-dir 'tox<4.0.0'
 CMD ["sleep", "infinity"]

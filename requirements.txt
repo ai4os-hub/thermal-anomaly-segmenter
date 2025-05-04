@@ -1,6 +1,6 @@
 # DEEPaaS framework requirements
-deepaas~=2.1.0
-webargs~=5.5.2
+deepaas~=2.6.0
+#webargs~=5.5.2
 flaat~=1.1.1
 
 # ML-related
@@ -20,6 +20,9 @@ lz4
 imageio
 scikit-learn
 scikit-image
+
+# exceptions
+numpy~=1.24.3
 
 # Utilities
 tqdm
