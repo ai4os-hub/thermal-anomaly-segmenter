@@ -34,6 +34,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
     libglib2.0-0 \
     wget \
     curl \
+    cmake \
     && rm -rf /var/lib/apt/lists/*
 
 # Update python packages
@@ -59,7 +60,7 @@ RUN git clone https://github.com/ai4os/deep-start /srv/.deep-start && \
 ENV SHELL /bin/bash
 
 # Install Data Version Control
-RUN pip3 install --no-cache-dir dvc dvc-webdav
+RUN pip3 install --no-cache-dir cmake lit dvc dvc-webdav
 
 # Install rclone (needed if syncing with NextCloud for training; otherwise remove)
 RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
