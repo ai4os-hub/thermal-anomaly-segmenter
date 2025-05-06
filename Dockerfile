@@ -25,7 +25,9 @@ ARG branch=main
 # Install Ubuntu packages
 # - gcc is needed in Pytorch images because deepaas installation might break otherwise (see docs)
 #   (it is already installed in tensorflow images)
-RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Etc/UTC
+RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y --no-install-recommends \
     gcc \
@@ -43,13 +45,13 @@ RUN python3 --version && \
     pip3 install --no-cache-dir --upgrade pip setuptools wheel
 
 # Set LANG environment
-ENV LANG C.UTF-8
+ENV LANG=C.UTF-8
 
 # Set the working directory
 WORKDIR /srv
 
 # Disable FLAAT authentication by default
-ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER yes
+ENV DISABLE_AUTHENTICATION_AND_ASSUME_AUTHENTICATED_USER=yes
 
 # Initialization scripts
 # deep-start can install JupyterLab or VSCode if requested
@@ -57,7 +59,7 @@ RUN git clone https://github.com/ai4os/deep-start /srv/.deep-start && \
     ln -s /srv/.deep-start/deep-start.sh /usr/local/bin/deep-start
 
 # Necessary for the Jupyter Lab terminal
-ENV SHELL /bin/bash
+ENV SHELL=/bin/bash
 
 # If DVC is not used, can comment vkoz@250506
 # Install Data Version Control
