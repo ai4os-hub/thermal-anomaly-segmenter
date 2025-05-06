@@ -59,8 +59,9 @@ RUN git clone https://github.com/ai4os/deep-start /srv/.deep-start && \
 # Necessary for the Jupyter Lab terminal
 ENV SHELL /bin/bash
 
+# If DVC is not used, can comment vkoz@250506
 # Install Data Version Control
-RUN pip3 install --no-cache-dir cmake lit dvc dvc-webdav
+#RUN pip3 install --no-cache-dir dvc dvc-webdav
 
 # Install rclone (needed if syncing with NextCloud for training; otherwise remove)
 RUN curl -O https://downloads.rclone.org/rclone-current-linux-amd64.deb && \
