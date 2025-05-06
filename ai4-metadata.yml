@@ -50,8 +50,8 @@ description: |-
 
 # doi: http://add-some-DOI-url.com
 dates:
-  created: 2025-02-19
-  updated: 2025-02-19
+  created: '2025-02-19'
+  updated: '2025-02-19'
 links:
   ai4_template: ai4-template-adv/2.1.0
   source_code: https://github.com/ai4os-hub/thermal-anomaly-segmenter
