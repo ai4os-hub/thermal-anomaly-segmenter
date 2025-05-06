@@ -8,7 +8,7 @@ torchmetrics==0.11.4
 pytorch-lightning==2.0.1
 lightning-utilities==0.8.0
 segmentation-models-pytorch==0.3.3
-transformers==4.30.1
+transformers==4.50.0
 mlflow
 cmake
 lit
