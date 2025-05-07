@@ -16,7 +16,7 @@ lit
 # Data & augmentation
 albumentations==1.3.0
 opencv-python==4.7.0.72
-opencv-python-headless==4.7.0.72
+opencv-python-headless==4.8.1.78
 matplotlib
 lz4
 imageio
