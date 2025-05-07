@@ -2,21 +2,34 @@
 
 [![Build Status](https://jenkins.services.ai4os.eu/buildStatus/icon?job=AI4OS-hub/thermal-anomaly-segmenter/main)](https://jenkins.services.ai4os.eu/job/AI4OS-hub/job/thermal-anomaly-segmenter/job/main)
 
-DEEPaaS API for TASeg (Thermal Anomaly Segmenter): UAS-based thermal urban anomaly
-semantic segmentation for leak detection in district heating systems.
 This repository can be used to infer with or train a semantic segmentation model,
 specifically a [SegFormer](https://huggingface.co/docs/transformers/)
 or [SMP model](https://github.com/qubvel-org/segmentation_models.pytorch) such as the DeepLabV3+.
+It's purpose is the detection of thermal anomalies that may pertain to leaks in district
+heating systems (DHSs).
+The models are therefore trained on thermal imagery acquired by unmanned aircraft system (UAS),
+which is processed to consist of three channels: (T_m, T_m, T_u). T_m is the thermal image
+masked with the DHS pipeline location and T_u is the full, unmasked image.
 
-To facilitate setting up, the bash script `setting_up_deployment.sh` can be 
-run to install everything automatically:
+https://github.com/user-attachments/assets/9bb405bf-fcbc-4ea1-9bec-910595f95c30
+
+The repo is also the DEEPaaS API for the ["Thermal Anomaly Segmenter (TASeg)" module on the AI4EOSC platform](https://dashboard.cloud.ai4eosc.eu/catalog/modules/thermal-anomaly-segmenter),
+described as "UAS-based thermal urban anomaly semantic segmentation for leak detection in DHSs".
+
+## Installation
+
+The simplest way to use the module is via the AI4EOSC platform or locally with the
+[Docker image](https://hub.docker.com/r/ai4oshub/thermal-anomaly-segmenter) (which is
+also buildable via the repo's Dockerfile).
+
+Alternatively, the bash script `setting_up_deployment.sh` can be run to install everything
+automatically in an AI4EOSC development deployment:
 ```bash
 wget https://raw.githubusercontent.com/ai4os-hub/thermal-anomaly-segmenter/main/setting_up_deployment.sh
 source setting_up_deployment.sh
 ```
-This takes care of all required installations and finishes by running [deepaas](https://github.com/ai4os/DEEPaaS).
-
-Alternatively, simply make use of the Docker image, buildable via the Dockerfile.
+This takes care of all required installations and finishes by running
+[deepaas](https://github.com/ai4os/DEEPaaS).
 
 ## Project structure
 
