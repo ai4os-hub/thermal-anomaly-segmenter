@@ -1,5 +1,5 @@
 metadata_version: 2.0.0
-title: thermal-anomaly-segmenter
+title: Thermal Anomaly Segmenter (TASeg)
 summary: "UAS-based thermal urban anomaly semantic segmentation for leak detection in district heating systems"
 description: |-
   The Thermal Anomaly Segmenter (TASeg) application adapts semantic segmentation models
@@ -8,8 +8,10 @@ description: |-
   toolbox](https://github.com/huggingface/transformers), and CNNs, specifically DeepLabV3+, UNet and PSPNet
   from the [segmentation_models.pytorch toolbox](https://github.com/qubvel-org/segmentation_models.pytorch).
 
+  <video controls><source src='https://github.com/user-attachments/assets/9bb405bf-fcbc-4ea1-9bec-910595f95c30' type='video/mp4'>Your browser does not support the video tag.</video>
+
   **Training the deep learning model(s)**
-  
+
   The models are trained based on user arguments and predefined configuration files.
   Regardless of model variant, pretrained weights from RGB-based semantic segmentation
   are used. Training is then performed as a three-phase procedure:
@@ -82,3 +84,6 @@ libraries:
   - PyTorch
 data-type:
   - Image
+resources:
+  inference:
+    memory_MB: 10000
